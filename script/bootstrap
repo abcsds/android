@@ -144,7 +144,7 @@ install_vundle () {
   if [ -d $DOTFILES_ROOT/vim/vim.symlink/bundle/Vundle.vim ]; then
     success "Vundler installed"
   else
-    git clone https://github.com/VundleVim/Vundle.vim.git $DOTFILES_ROOT/vim/vim.symlink/bundle/Vundle.vim  >/tmp/Vundle 2>&1
+    git clone https://github.com/VundleVim/Vundle.vim.git $DOTFILES_ROOT/vim/vim.symlink/bundle/Vundle.vim  >/tmp-mksh/Vundle 2>&1
     success "Vundler installed"
   fi
 }
@@ -157,7 +157,7 @@ install_antigen () {
     success "Antigen installed"
   else
     # Install antigen
-    git clone https://github.com/zsh-users/antigen.git $DOTFILES_ROOT/antigen/antigen.symlink  >/tmp/antigen 2>&1
+    git clone https://github.com/zsh-users/antigen.git $DOTFILES_ROOT/antigen/antigen.symlink  >/tmp-mksh/antigen 2>&1
     success "Antigen installed"
   fi
 }
