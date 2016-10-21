@@ -3,6 +3,8 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd)
 
+mkdir $DOTFILES_ROOT/tmp
+
 set -e
 
 echo ''
@@ -144,7 +146,7 @@ install_vundle () {
   if [ -d $DOTFILES_ROOT/vim/vim.symlink/bundle/Vundle.vim ]; then
     success "Vundler installed"
   else
-    git clone https://github.com/VundleVim/Vundle.vim.git $DOTFILES_ROOT/vim/vim.symlink/bundle/Vundle.vim  >/tmp-mksh/Vundle 2>&1
+    git clone https://github.com/VundleVim/Vundle.vim.git $DOTFILES_ROOT/vim/vim.symlink/bundle/Vundle.vim  >~/tmp/Vundle 2>&1
     success "Vundler installed"
   fi
 }
@@ -157,7 +159,7 @@ install_antigen () {
     success "Antigen installed"
   else
     # Install antigen
-    git clone https://github.com/zsh-users/antigen.git $DOTFILES_ROOT/antigen/antigen.symlink  >/tmp-mksh/antigen 2>&1
+    git clone https://github.com/zsh-users/antigen.git $DOTFILES_ROOT/antigen/antigen.symlink  >~/tmp/antigen 2>&1
     success "Antigen installed"
   fi
 }
@@ -175,8 +177,11 @@ find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
 # Finish vim plugin install
 vim +PluginInstall +qall
 
+rm -rf ~/tmp
+
 # Set zsh
 sudo chsh -s $(which zsh) $(whoami)
+
 
 echo ''
 echo '  All installed!'
